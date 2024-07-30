@@ -1,0 +1,95 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-width: 1200px;
+    position: relative; /* 절대 위치 요소를 사용하기 위해 상대 위치 설정 */
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0px;  /* 원하는 위치로 조정 */
+    left: -25px; /* 원하는 위치로 조정 */
+    width: 2px;  /* 선의 두께 */
+    height: 50px; /* 선의 길이 */
+    background-color: #000; /* 선의 색상 */
+}
+
+.intro {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.menu {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Lucida Console', sans-serif; /* Lucida Console 폰트 설정 */
+}
+
+
+.home-button {
+    display: block; /* 블록 요소로 설정하여 줄 바꿈 */
+    margin-bottom: 0; /* 아래 여백 제거 */
+    font-size: 10px; /* 폰트 크기 설정 */
+    color: #000; /* 글자 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    font-weight: bold; /* 글자 두껍게 */
+    font-family: 'Roboto', sans-serif;
+    transform: rotate(90deg); /* 90도 회전 */
+    transform-origin: left bottom; /* 회전 기준점 설정 */
+    position: absolute; /* 절대 위치 지정 */
+    top: 20px; /* 상단에서의 위치 조정 */
+    left: -20px; /* 왼쪽에서의 위치 조정 */
+    z-index: 10; /* 다른 요소들 위에 표시 */
+}
+
+.home-button:hover {
+    color: #000000; /* 마우스 오버 시 색상 변경 */
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+}
+
+h1 {
+    font-size: 48px;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Lucida Console', sans-serif; /* Lucida Console 폰트 설정 */
+}
+
+
+h2 {
+    font-size: 24px;
+    color: #483d3d;
+    margin-bottom: 50px;
+    font-family: 'Lucida Console', sans-serif; /* Lucida Console 폰트 설정 */
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    font-family: 'Lucida Console', sans-serif; /* Lucida Console 폰트 설정 */
+}
+

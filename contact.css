@@ -1,0 +1,94 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    height: 100vh;
+    background-color: #ffffff; /* 흰색 배경 */
+    font-family: 'Arial', sans-serif;
+    margin: 0; /* 기본 여백 제거 */
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 변경 */
+    align-items: center; /* 가운데 정렬 */
+    width: 80%;
+    max-width: 1200px;
+    position: relative; /* 절대 위치 요소를 사용하기 위해 상대 위치 설정 */
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0px;  /* 원하는 위치로 조정 */
+    left: -25px; /* 원하는 위치로 조정 */
+    width: 2px;  /* 선의 두께 */
+    height: 50px; /* 선의 길이 */
+    background-color: #000; /* 선의 색상 */
+}
+
+.intro {
+    padding: 20px;
+    text-align: center; /* 가운데 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-button {
+    display: block; /* 블록 요소로 설정하여 줄 바꿈 */
+    margin-bottom: 0; /* 아래 여백 제거 */
+    font-size: 10px; /* 폰트 크기 설정 */
+    color: #000; /* 글자 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    font-weight: bold; /* 글자 두껍게 */
+    font-family: 'Roboto', sans-serif;
+    transform: rotate(90deg); /* 90도 회전 */
+    transform-origin: left bottom; /* 회전 기준점 설정 */
+    position: absolute; /* 절대 위치 지정 */
+    top: 20px; /* 상단에서의 위치 조정 */
+    left: -20px; /* 왼쪽에서의 위치 조정 */
+    z-index: 10; /* 다른 요소들 위에 표시 */
+}
+
+.home-button:hover {
+    color: #000000; /* 마우스 오버 시 색상 변경 */
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+}
+
+/* 각 글자에 애니메이션 지연을 주어 한 글자씩 뛰어내리게 함 */
+.jumping-text span {
+    display: inline-block; /* 애니메이션을 적용하기 위해 inline-block으로 설정 */
+    animation: jump 0.6s ease 0s 3; /* 애니메이션 3회 반복 */
+}
+
+.jumping-text span:nth-child(1) { animation-delay: 0s; }
+.jumping-text span:nth-child(2) { animation-delay: 0.1s; }
+.jumping-text span:nth-child(3) { animation-delay: 0.2s; }
+.jumping-text span:nth-child(4) { animation-delay: 0.3s; }
+.jumping-text span:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0); /* 원래 위치 */
+    }
+    50% {
+        transform: translateY(-20px); /* 위로 20px 이동 */
+    }
+}
+
+.contact-info {
+    font-size: 18px; /* 이메일 텍스트 크기 */
+    color: #333; /* 텍스트 색상 */
+    margin-top: 20px; /* 위쪽 여백 */
+}
+
+.contact-info a {
+    color: #007BFF; /* 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.contact-info a:hover {
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+}

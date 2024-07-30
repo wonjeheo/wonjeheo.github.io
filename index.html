@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="intro">
+            <a href="https://blog.naver.com/man_in_the_box" class="home-button">BLOG</a>
+            <p class="name">Wonje Heo</p>
+            <p>Computer Scientist / <span class="father-of-heodung">Father of Heodung</span></p>
+            <p>Currently working full-time as an MS student at <a href="https://ctal-dgist.github.io/" target="_blank">CTAL</a></p>
+            <div class="photo">
+                <img src="heodung.jpg" alt="Heodung Image" class="heodung-image" style="display: none;">
+            </div>
+        </div>
+        <div class="menu">
+            <a href="about.html" class="menu-item">ABOUT</a>
+            <a href="publication.html" class="menu-item">PUBLICATION</a>
+            <a href="project.html" class="menu-item">PROJECT</a>
+            <a href="contact.html" class="menu-item">CONTACT</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("Interactive CV loaded!");
+
+            const fatherOfHeodung = document.querySelector('.father-of-heodung');
+            const heodungImage = document.querySelector('.heodung-image');
+
+            fatherOfHeodung.addEventListener('mouseover', function() {
+                heodungImage.style.display = 'block'; // 마우스 오버 시 이미지 표시
+            });
+
+            fatherOfHeodung.addEventListener('mouseout', function() {
+                heodungImage.style.display = 'none'; // 마우스 아웃 시 이미지 숨김
+            });
+        });
+    </script>
+</body>
+</html>
