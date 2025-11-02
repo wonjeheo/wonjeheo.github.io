@@ -1,0 +1,43 @@
+{
+  "international": [
+    {
+      "authors": ["W Heo", "J Seo", "Y Lee", "Y Kim"],
+      "title": "Fluid-driven DNA stretching for single-molecule studies on chromatin-associated proteins",
+      "journal": "Biochemical and Biophysical Research Communications",
+      "volume": "634",
+      "pages": "122–128",
+      "year": "2022",
+      "doi": "https://doi.org/10.1016/j.bbrc.2022.10.023"
+    },
+    {
+      "authors": ["W Heo", "D Shin"],
+      "title": "Automated Identification of ICS Topology and Device Types via Protocol-Agnostic Passive Monitoring",
+      "journal": "IEEE Internet of Things Journal",
+      "year": "2025",
+      "doi": "https://doi.org/10.1109/JIOT.2025.3623634"
+    },
+    {
+      "authors": ["C Chae", "W Heo", "D Shin"],
+      "title": "QR: Modular Arithmetic-Enhanced Virtual Bit Plane Construction for High-Capacity Image Steganography",
+      "journal": "IEEE Internet of Things Journal",
+      "year": "2025",
+      "doi": "https://doi.org/10.1109/JIOT.2025.3615138"
+    }
+  ],
+  "domestic": [
+    {
+      "authors": ["김유신", "허원제", "채척", "신동훈"],
+      "title": "산업제어시스템에서의 기능 패치 기반 경량 이상 탐지 AI",
+      "conference": "한국정보과학회 2025 한국컴퓨터종합학술대회 논문집 (KCC 2025)",
+      "pages": "1512–1514",
+      "year": "2025"
+    },
+    {
+      "authors": ["허원제", "김유신", "우은규", "신동훈"],
+      "title": "다중 스케일 스펙트럼 특징을 활용한 이중 인코딩 음성의 원 코덱 식별 AI",
+      "conference": "한국정보과학회 2025 한국컴퓨터종합학술대회 논문집 (KCC 2025)",
+      "pages": "1515–1517",
+      "year": "2025"
+    }
+  ]
+}

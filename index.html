@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wonje Heo · CV</title>
+
+  <!-- Leaflet 라이브러리 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- 🦎 자유롭게 돌아다니는 gecko -->
+  <div class="gecko free-gecko-left">
+    <img src="images/gecko.gif" alt="Gecko Left" />
+  </div>
+  <div class="gecko free-gecko-right">
+    <img src="images/gecko.gif" alt="Gecko Right" />
+  </div>
+
+  <!-- 🌟 Hero -->
+  <section id="intro" class="hero">
+    <div class="container">
+      <div class="intro-text">
+        <h1>Wonje Heo</h1>
+        <p>
+          Hi, I'm <strong>Wonje Heo</strong>, a M.S. course student 
+          at the Department of Electrical Engineering & Computer Sciences (EECS) at DGIST, South Korea. 
+          I am conducting my research under the supervision of <strong>Prof. Donghoon Shin</strong> 
+          at the <strong><a href="https://algo.dgist.ac.kr/" target="_blank" style="color:#38bdf8; text-decoration:none;">DGIST Computer Theory and Application Lab</a></strong>.
+        </p>
+        <p>
+          Previously, I earned a B.S. degree from the <strong>Department of School of Undergraduate Studies, DGIST</strong>, in 2024, 
+          and I was fortunate to study as a student at <strong>UC Berkeley</strong> and <strong>George Washington University</strong>.
+        </p>
+        <p>
+          My research interest is in <strong>OT Network Cybersecurity</strong> and <strong>Data Hiding</strong>, 
+          focusing on <em>Steganography</em> and <em>Watermarking</em>.
+        </p>
+
+        <!-- 🔗 Links -->
+        <div class="intro-links">
+          <a href="mailto:heo_wonje@dgist.ac.kr">Email</a>
+          <span>·</span>
+          <a href="https://scholar.google.com/citations?view_op=list_works&hl=ko&user=M1zbxg0AAAAJ" target="_blank">Google Scholar</a>
+          <span>·</span>
+          <a href="https://github.com/wonjeheo" target="_blank">GitHub</a>
+          <span>·</span>
+          <a href="cv/WonjeHeo_CV.pdf" target="_blank">CV</a>
+          <span>·</span>
+          <a href="https://blog.naver.com/man_in_the_box" target="_blank">Blog</a>
+        </div>
+      </div>
+
+      <div class="intro-photo">
+        <img src="images/profile.png" alt="Profile photo of Wonje Heo" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 📚 Publications -->
+  <section id="publication" class="section fade-in-section">
+    <!-- render.js에서 자동으로 렌더링 -->
+  </section>
+
+  <!-- 🏅 Honors -->
+  <section id="honors" class="section fade-in-section">
+    <!-- render.js에서 자동으로 렌더링 -->
+  </section>
+
+  <!-- 🎓 Education -->
+  <section id="education" class="section fade-in-section">
+    <!-- render.js에서 자동으로 렌더링 -->
+  </section>
+
+  <!-- 🎸 Hobbies -->
+  <section id="hobbies" class="section fade-in-section">
+    <h2>Hobbies & Interests</h2>
+    <p>
+      Outside of research, I enjoy <strong>traveling</strong>, <strong>rock music</strong>, and <strong>soccer</strong>.
+      Exploring new cities and cultures inspires creativity in my academic work.
+    </p>
+    <div id="travel-map"></div>
+    <div id="travel-count" class="travel-count"></div>
+  </section>
+
+  <!-- JS 로드 -->
+  <script src="js/render.js"></script>
+  <script src="js/scroll_animation.js"></script>
+</body>
+</html>

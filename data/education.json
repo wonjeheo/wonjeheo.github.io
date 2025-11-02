@@ -1,0 +1,27 @@
+[
+  {
+    "school": "Daegu Gyeongbuk Institute of Science and Technology (DGIST)",
+    "degree": "M.S. Course in Electrical Engineering & Computer Sciences (EECS), 2024 – Present",
+    "logo": "images/dgist_eecs.png"
+  },
+  {
+    "school": "George Washington University",
+    "degree": "Exchange Student, 2023",
+    "logo": "images/gwu.png"
+  },
+  {
+    "school": "UC Berkeley",
+    "degree": "Exchange Student, 2018",
+    "logo": "images/UC_berkeley.png"
+  },
+  {
+    "school": "Daegu Gyeongbuk Institute of Science and Technology (DGIST)",
+    "degree": "B.S. in Undergraduate Studies, 2018 – 2024",
+    "logo": "images/dgist_transparent.png"
+  },
+  {
+    "school": "Busan Jangan Highschool",
+    "degree": "Highschool Student, 2015 – 2018",
+    "logo": "images/busan_high.png"
+  }
+]
