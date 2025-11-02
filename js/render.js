@@ -36,17 +36,24 @@ function renderPublications(pubs) {
       <ul class="pub-list">
         ${pubs.international
           .sort((a, b) => b.year - a.year)
-          .map(
-            (p) => `
-            <li>
-              <u>${p.authors[0]}</u>${p.authors.slice(1).length ? ", " + p.authors.slice(1).join(", ") : ""}
-              “<strong>${p.title}</strong>,” 
-              <em>${p.journal}</em>${p.volume ? `, vol. ${p.volume}` : ""}${p.pages ? `, pp. ${p.pages}` : ""}, 
-              ${p.year}. 
-              ${p.doi ? `<a href="${p.doi}" target="_blank">📄 DOI</a>` : ""}
-            </li>
-          `
-          )
+          .map((p) => {
+            const authorsHTML = p.authors
+              .map((a) => 
+                /Heo/i.test(a) || /Wonje/i.test(a) 
+                  ? `<u>${a}</u>` 
+                  : a
+              )
+              .join(", ");
+            return `
+              <li>
+                ${authorsHTML}.  
+                “<strong>${p.title}</strong>,” 
+                <em>${p.journal}</em>${p.volume ? `, vol. ${p.volume}` : ""}${p.pages ? `, pp. ${p.pages}` : ""}, 
+                ${p.year}. 
+                ${p.doi ? `<a href="${p.doi}" target="_blank">📄 DOI</a>` : ""}
+              </li>
+            `;
+          })
           .join("")}
       </ul>
     </div>
@@ -56,15 +63,23 @@ function renderPublications(pubs) {
       <ul class="pub-list">
         ${pubs.domestic
           .sort((a, b) => b.year - a.year)
-          .map(
-            (p) => `
-            <li>
-              ${p.authors.map((a, i) => (i === 1 ? `<u>${a}</u>` : a)).join(", ")}.  
-              “<strong>${p.title}</strong>,”  
-              <em>${p.conference}</em>${p.pages ? `, pp. ${p.pages}` : ""}, ${p.year}.
-            </li>
-          `
-          )
+          .map((p) => {
+            const authorsHTML = p.authors
+              .map((a) =>
+                /Heo/i.test(a) || /Wonje/i.test(a) || /허\s*원제/.test(a)
+                  ? `<u>${a}</u>`
+                  : a
+              )
+              .join(", ");
+
+            return `
+              <li>
+                ${authorsHTML}.  
+                “<strong>${p.title}</strong>,”  
+                <em>${p.conference}</em>${p.pages ? `, pp. ${p.pages}` : ""}, ${p.year}.
+              </li>
+            `;
+          })
           .join("")}
       </ul>
     </div>
@@ -72,6 +87,7 @@ function renderPublications(pubs) {
 
   section.innerHTML = html;
 }
+
 
 /* ---------- 🏅 Honors & Awards ---------- */
 function renderHonors(honors) {
