@@ -27,6 +27,32 @@ async function loadData() {
 }
 
 /* ---------- 📚 Publications ---------- */
+function formatAuthors(p) {
+  return p.authors.map((a, i) => {
+    let mark = "";
+
+    // ① 단독 1저자
+    if (p.first_author && i === 0 && !p.equal_contribution_indices)
+      mark = "<sup>1</sup>";
+
+    // ② 공동 1저자 (equal_contribution_indices 배열 기반)
+    if (p.equal_contribution_indices && p.equal_contribution_indices.includes(i))
+      mark = "<sup>†</sup>";
+
+    // ③ 교신저자
+    if (p.corresponding_author_index === i)
+      mark += "<sup>*</sup>";
+
+    // ④ 네 이름 밑줄 처리
+    const underlined = /Heo/i.test(a) || /Wonje/i.test(a) || /허\s*원제/.test(a)
+      ? `<u>${a}</u>`
+      : a;
+
+    return underlined + mark;
+  }).join(", ");
+}
+
+
 function renderPublications(pubs) {
   const section = document.querySelector("#publication");
   let html = `
@@ -37,13 +63,7 @@ function renderPublications(pubs) {
         ${pubs.international
           .sort((a, b) => b.year - a.year)
           .map((p) => {
-            const authorsHTML = p.authors
-              .map((a) => 
-                /Heo/i.test(a) || /Wonje/i.test(a) 
-                  ? `<u>${a}</u>` 
-                  : a
-              )
-              .join(", ");
+            const authorsHTML = formatAuthors(p);
             return `
               <li>
                 ${authorsHTML}.  
@@ -64,14 +84,7 @@ function renderPublications(pubs) {
         ${pubs.domestic
           .sort((a, b) => b.year - a.year)
           .map((p) => {
-            const authorsHTML = p.authors
-              .map((a) =>
-                /Heo/i.test(a) || /Wonje/i.test(a) || /허\s*원제/.test(a)
-                  ? `<u>${a}</u>`
-                  : a
-              )
-              .join(", ");
-
+            const authorsHTML = formatAuthors(p);
             return `
               <li>
                 ${authorsHTML}.  
@@ -83,11 +96,14 @@ function renderPublications(pubs) {
           .join("")}
       </ul>
     </div>
+
+    <p style="font-size:0.9em; color:#94a3b8; margin-top:20px;">
+      <sup>1</sup> First author <sup>†</sup> Equal contribution <sup>*</sup> Corresponding author
+    </p>
   `;
 
   section.innerHTML = html;
 }
-
 
 /* ---------- 🏅 Honors & Awards ---------- */
 function renderHonors(honors) {
