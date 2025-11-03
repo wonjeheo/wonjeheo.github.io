@@ -120,6 +120,8 @@ body {
 
 /* === ✨ Section Fade-in Animation === */
 .section, .hero {
+  position: relative;
+  z-index: 10;
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1s ease-out, transform 1s ease-out;
@@ -133,48 +135,55 @@ body {
 /* === 🦎 자유롭게 돌아다니는 Gecko === */
 .gecko {
   position: fixed;
-  z-index: 999;
+  z-index: 0; /* ✅ 섹션보다 아래 */
   opacity: 0.9;
   pointer-events: none;
 }
 
 .gecko img {
   width: 400px;
+  transform-origin: center center;
   filter: brightness(1.5) contrast(2)
           drop-shadow(0 0 12px rgba(56, 189, 248, 0.6));
+  transition: transform 1s ease;
   image-rendering: -webkit-optimize-contrast;
 }
 
 /* 왼쪽 Gecko: 천천히 화면을 가로질러 이동 */
 .free-gecko-left {
-  top: 10%;
-  left: 5%;
+  top: 35%;
+  left: 10%;
   animation: roamLeft 18s ease-in-out infinite alternate;
 }
 
 /* 오른쪽 Gecko: 반대 방향, 반전 */
 .free-gecko-right {
-  bottom: 10%;
-  right: 5%;
+  bottom: 5%;
+  right: 20%;
   transform: scaleX(-1);
   animation: roamRight 22s ease-in-out infinite alternate;
 }
 
 /* === 이동 애니메이션 === */
 @keyframes roamLeft {
-  0%   { transform: translate(0, 0) rotate(5deg); }
-  25%  { transform: translate(200px, 80px) rotate(-5deg); }
-  50%  { transform: translate(400px, 120px) rotate(3deg); }
-  75%  { transform: translate(250px, -60px) rotate(-6deg); }
-  100% { transform: translate(0, 0) rotate(4deg); }
+  0%   { transform: translateX(0) rotate(6deg) scaleX(1); }
+  25%  { transform: translate(150px, 40px) rotate(2deg) scaleX(1); }
+  50%  { transform: translate(300px, 0) rotate(-3deg) scaleX(1); }
+  /* 방향 반전 (머리와 진행 모두 바꾸기) */
+  50.1%{ transform: translate(300px, 0) rotate(-3deg) scaleX(-1); }
+  75%  { transform: translate(150px, 40px) rotate(-2deg) scaleX(-1); }  /* ✅ y도 동일 방향으로 */
+  100% { transform: translate(0, 0) rotate(5deg) scaleX(-1); }          /* ✅ 원위치 복귀 */
 }
 
+/* 🦎 오른쪽 도마뱀 */
 @keyframes roamRight {
-  0%   { transform: scaleX(-1) translate(0, 0) rotate(-3deg); }
-  25%  { transform: scaleX(-1) translate(-250px, -100px) rotate(4deg); }
-  50%  { transform: scaleX(-1) translate(-400px, 50px) rotate(-2deg); }
-  75%  { transform: scaleX(-1) translate(-200px, 100px) rotate(5deg); }
-  100% { transform: scaleX(-1) translate(0, 0) rotate(-3deg); }
+  0%   { transform: translateX(0) rotate(-5deg) scaleX(-1); }
+  25%  { transform: translate(-150px, -40px) rotate(-2deg) scaleX(-1); }
+  50%  { transform: translate(-300px, 0) rotate(3deg) scaleX(-1); }
+  /* 방향 반전 (머리와 진행 모두 바꾸기) */
+  50.1%{ transform: translate(-300px, 0) rotate(3deg) scaleX(1); }
+  75%  { transform: translate(-150px, -40px) rotate(-2deg) scaleX(1); }  /* ✅ 진행 방향 반전 */
+  100% { transform: translate(0, 0) rotate(-5deg) scaleX(1); }
 }
 
 /* === Publication 섹션 === */
@@ -301,6 +310,31 @@ body {
   box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
 }
 
+/* 🦎 히든 메시지 토스트 스타일 */
+.hidden-msg {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(56, 189, 248, 0.9);
+  color: #000;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1em;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+  animation: fadeUp 0.4s ease, fadeOut 0.5s ease 3.3s forwards;
+  z-index: 9999;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translate(-50%, -20px); }
+}
 
 /* === 반응형 (모바일) === */
 @media (max-width: 900px) {
@@ -362,7 +396,7 @@ body {
 
 @media (max-width: 768px) {
   .section, .hero {
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    transition: opacity 1s ease-out, transform 0.7s ease-out;
   }
 }
 

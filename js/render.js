@@ -59,7 +59,7 @@ function renderPublications(pubs) {
     </div>
 
     <div class="pub-category">
-      <h3>Domestic Conferences</h3>
+      <h3>Domestic</h3>
       <ul class="pub-list">
         ${pubs.domestic
           .sort((a, b) => b.year - a.year)
