@@ -1,6 +1,9 @@
 [
   { "city": "🇰🇷 Daegu, South Korea", "coord": [35.8714, 128.6014] },
   { "city": "🇯🇵 Osaka, Japan", "coord": [34.6937, 135.5023] },
+  { "city": "🇯🇵 Kyoto, Japan", "coord": [35.0116, 135.7681] },
+  { "city": "🇯🇵 Nara, Japan", "coord": [34.6851, 135.8048] },
+  { "city": "🇯🇵 Kobe, Japan", "coord": [34.6901, 135.1955] },
   { "city": "🇯🇵 Tokyo, Japan", "coord": [35.6895, 139.6917] },
   { "city": "🇸🇬 Singapore", "coord": [1.3521, 103.8198] },
   { "city": "🇹🇭 Bangkok, Thailand", "coord": [13.7563, 100.5018] },
