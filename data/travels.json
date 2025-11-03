@@ -4,6 +4,9 @@
   { "city": "🇯🇵 Tokyo, Japan", "coord": [35.6895, 139.6917] },
   { "city": "🇸🇬 Singapore", "coord": [1.3521, 103.8198] },
   { "city": "🇹🇭 Bangkok, Thailand", "coord": [13.7563, 100.5018] },
+  { "city": "🇹🇭 Ayutthaya, Thailand", "coord": [14.3532, 100.5680] },
+  { "city": "🇹🇭 Pattaya, Thailand", "coord": [12.9236, 100.8825] },
+  { "city": "🇶🇦 Doha, Qatar", "coord": [25.276987, 51.520008] },
   { "city": "🇺🇸 Berkeley, USA", "coord": [37.8715, -122.2730] },
   { "city": "🇺🇸 San Francisco, USA", "coord": [37.7749, -122.4194] },
   { "city": "🇺🇸 Los Angeles, USA", "coord": [34.0522, -118.2437] },
@@ -16,6 +19,7 @@
   { "city": "🇮🇹 Pisa, Italy", "coord": [43.7167, 10.4] },
   { "city": "🇮🇹 Florence, Italy", "coord": [43.7696, 11.2558] },
   { "city": "🇮🇹 Sorrento, Italy", "coord": [40.6263, 14.3758] },
+  { "city": "🇮🇹 Pompeii, Italy", "coord": [40.7460, 14.4989] },
   { "city": "🇭🇺 Budapest, Hungary", "coord": [47.4979, 19.0402] },
   { "city": "🇨🇿 Prague, Czech Republic", "coord": [50.0755, 14.4378] },
   { "city": "🇦🇹 Vienna, Austria", "coord": [48.2082, 16.3738] },
@@ -24,7 +28,9 @@
   { "city": "🇵🇹 Porto, Portugal", "coord": [41.1579, -8.6291] },
   { "city": "🇵🇹 Lisbon, Portugal", "coord": [38.7169, -9.1399] },
   { "city": "🇪🇸 Seville, Spain", "coord": [37.3891, -5.9845] },
+  { "city": "🇪🇸 Ronda, Spain", "coord": [36.7420, -5.1675] },
   { "city": "🇪🇸 Malaga, Spain", "coord": [36.7213, -4.4214] },
+  { "city": "🇪🇸 Frigiliana, Spain", "coord": [36.7920, -3.8947] },
   { "city": "🇪🇸 Granada, Spain", "coord": [37.1773, -3.5986] },
   { "city": "🇪🇸 Barcelona, Spain", "coord": [41.3874, 2.1686] }
 ]
