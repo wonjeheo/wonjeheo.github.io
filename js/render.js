@@ -76,11 +76,10 @@ function renderPubCategory(title, list, type) {
               : "";
 
             // 페이지/볼륨
-            const detail =
-              p.volume
-                ? `, vol. ${p.volume}`
-                : "" +
-                  (p.pages ? `, pp. ${p.pages}` : "");
+            let detail = "";
+
+            if (p.volume) detail += `, vol. ${p.volume}`;
+            if (p.pages) detail += `, pp. ${p.pages}`;
 
             // DOI
             const doi = p.doi
