@@ -26,85 +26,102 @@ async function loadData() {
   }
 }
 
-/* ---------- 📚 Publications ---------- */
+/* ---------- 📚 Publications (Updated) ---------- */
 function formatAuthors(p) {
   return p.authors.map((a, i) => {
     let mark = "";
 
-    // ① 단독 1저자
+    // 단독 1저자
     if (p.first_author && i === 0 && !p.equal_contribution_indices)
       mark = "<sup>1</sup>";
 
-    // ② 공동 1저자 (equal_contribution_indices 배열 기반)
+    // 공동 1저자
     if (p.equal_contribution_indices && p.equal_contribution_indices.includes(i))
       mark = "<sup>†</sup>";
 
-    // ③ 교신저자
+    // 교신저자
     if (p.corresponding_author_index === i)
       mark += "<sup>*</sup>";
 
-    // ④ 네 이름 밑줄 처리
-    const underlined = /Heo/i.test(a) || /Wonje/i.test(a) || /허\s*원제/.test(a)
-      ? `<u>${a}</u>`
-      : a;
+    // 네 이름 밑줄
+    const underlined =
+      /Heo/i.test(a) || /Wonje/i.test(a) || /허\s*원제/.test(a)
+        ? `<u>${a}</u>`
+        : a;
 
     return underlined + mark;
   }).join(", ");
 }
 
-
-function renderPublications(pubs) {
-  const section = document.querySelector("#publication");
-  let html = `
-    <h2>Publications</h2>
+function renderPubCategory(title, list, type) {
+  return `
     <div class="pub-category">
-      <h3>International</h3>
+      <h3>${title}</h3>
       <ul class="pub-list">
-        ${pubs.international
+        ${list
           .sort((a, b) => b.year - a.year)
           .map((p) => {
             const authorsHTML = formatAuthors(p);
-            return `
-              <li>
-                ${authorsHTML}.  
-                “<strong>${p.title}</strong>,” 
-                <em>${p.journal}</em>${p.volume ? `, vol. ${p.volume}` : ""}${p.pages ? `, pp. ${p.pages}` : ""}, 
-                ${p.year}. 
-                ${p.doi ? `<a href="${p.doi}" target="_blank">📄 DOI</a>` : ""}
-              </li>
-            `;
-          })
-          .join("")}
-      </ul>
-    </div>
 
-    <div class="pub-category">
-      <h3>Domestic</h3>
-      <ul class="pub-list">
-        ${pubs.domestic
-          .sort((a, b) => b.year - a.year)
-          .map((p) => {
-            const authorsHTML = formatAuthors(p);
+            // 학회인지 저널인지 파싱
+            const venue = p.journal
+              ? `<em>${p.journal}</em>`
+              : p.conference
+              ? `<em>${p.conference}</em>`
+              : "";
+
+            // presentation 처리 (oral/poster)
+            const presentation = p.presentation
+              ? `<span style="color:#38bdf8; font-weight:bold;">[${p.presentation.toUpperCase()}]</span>`
+              : "";
+
+            // 페이지/볼륨
+            const detail =
+              p.volume
+                ? `, vol. ${p.volume}`
+                : "" +
+                  (p.pages ? `, pp. ${p.pages}` : "");
+
+            // DOI
+            const doi = p.doi
+              ? `<a href="${p.doi}" target="_blank">📄 DOI</a>`
+              : "";
+
             return `
               <li>
                 ${authorsHTML}.  
                 “<strong>${p.title}</strong>,”  
-                <em>${p.conference}</em>${p.pages ? `, pp. ${p.pages}` : ""}, ${p.year}.
+                ${venue}${detail ? detail : ""}, ${p.year}.  
+                ${presentation}  
+                ${doi}
               </li>
             `;
           })
           .join("")}
       </ul>
     </div>
+  `;
+}
+
+function renderPublications(pubs) {
+  const section = document.querySelector("#publication");
+
+  let html = `
+    <h2>Publications</h2>
+
+    ${renderPubCategory("International Journal", pubs.international_journal || [])}
+    ${renderPubCategory("International Conference", pubs.international_conference || [])}
+    ${renderPubCategory("Domestic", pubs.domestic || [])}
 
     <p style="font-size:0.9em; color:#94a3b8; margin-top:20px;">
-      <sup>1</sup> First author <sup>†</sup> Equal contribution <sup>*</sup> Corresponding author
+      <sup>1</sup> First author 
+      <sup>†</sup> Equal contribution 
+      <sup>*</sup> Corresponding author
     </p>
   `;
 
   section.innerHTML = html;
 }
-
 /* ---------- 🏅 Honors & Awards ---------- */
 function renderHonors(honors) {
   const section = document.querySelector("#honors");
