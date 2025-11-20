@@ -1,5 +1,5 @@
 {
-  "international": [
+  "international_journal": [
     {
       "authors": ["W Heo", "J Seo", "Y Lee", "Y Kim"],
       "title": "Fluid-driven DNA stretching for single-molecule studies on chromatin-associated proteins",
@@ -31,6 +31,23 @@
       "corresponding_author_index": 2
     }
   ],
+
+  "international_conference": [
+    {
+      "authors": ["Y Kim", "W Heo", "E Woo", "D Shin"],
+      "title": "LCDTwin: LLM-Driven Contextual Digital Twin for Actuator–Sensor Correlation in ICS",
+      "conference": "2025 5th International Conference on Robotics, Automation, and Artificial Intelligence (RAAI 2025)",
+      "location": "Singapore",
+      "dates": "December 18–20, 2025",
+      "status": "accepted",
+      "presentation": "oral",
+      "registration_deadline": "2025-11-22",
+      "first_author": true,
+      "equal_contribution_indices": [0, 1],
+      "corresponding_author_index": 3
+    }
+  ],
+
   "domestic": [
     {
       "authors": ["김유신", "허원제", "채척", "신동훈"],
