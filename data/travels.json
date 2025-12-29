@@ -49,6 +49,7 @@
   { "city": "🇪🇸 Granada, Spain", "coord": [37.1773, -3.5986], "type": "past" },
   { "city": "🇪🇸 Barcelona, Spain", "coord": [41.3874, 2.1686], "type": "past" },
 
+  {"city": "🇨🇦 Vancouver, Canada", "coord": [49.2827, -123.1207], "type": "longtrip"}, 
   { "city": "🇲🇽 Cancun, Mexico", "coord": [21.1619, -86.8515], "type": "longtrip" },
   { "city": "🇲🇽 Playa del Carmen, Mexico", "coord": [20.6296, -87.0739], "type": "longtrip" },
   { "city": "🇲🇽 Palenque, Mexico", "coord": [17.4849, -92.0450], "type": "longtrip" },
