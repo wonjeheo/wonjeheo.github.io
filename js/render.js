@@ -52,53 +52,86 @@ function formatAuthors(p) {
   }).join(", ");
 }
 
-
 function renderPublications(pubs) {
   const section = document.querySelector("#publication");
-  let html = `
+
+  const intlJournal = Array.isArray(pubs.international_journal)
+    ? pubs.international_journal
+    : [];
+
+  const intlConf = Array.isArray(pubs.international_conference)
+    ? pubs.international_conference
+    : [];
+
+  const domestic = Array.isArray(pubs.domestic)
+    ? pubs.domestic
+    : [];
+
+  const renderList = (list) =>
+    list
+      .slice()
+      .sort((a, b) => Number(b.year) - Number(a.year))
+      .map((p) => {
+        const authorsHTML = formatAuthors(p);
+
+        const venue = p.journal
+          ? `<em>${p.journal}</em>`
+          : p.conference
+          ? `<em>${p.conference}</em>`
+          : "";
+
+        let detail = "";
+        if (p.volume) detail += `, vol. ${p.volume}`;
+        if (p.pages) detail += `, pp. ${p.pages}`;
+
+        const presentation = p.presentation
+          ? ` <span style="color:#38bdf8; font-weight:bold;">[${String(p.presentation).toUpperCase()}]</span>`
+          : "";
+
+        const doi = p.doi
+          ? ` <a href="${p.doi}" target="_blank">📄 DOI</a>`
+          : "";
+
+        return `
+          <li>
+            ${authorsHTML}.  
+            “<strong>${p.title}</strong>,” 
+            ${venue}${detail}, ${p.year}.
+            ${presentation}
+            ${doi}
+          </li>
+        `;
+      })
+      .join("");
+
+  const html = `
     <h2>Publications</h2>
+
     <div class="pub-category">
-      <h3>International</h3>
+      <h3>International Journal</h3>
       <ul class="pub-list">
-        ${pubs.international
-          .sort((a, b) => b.year - a.year)
-          .map((p) => {
-            const authorsHTML = formatAuthors(p);
-            return `
-              <li>
-                ${authorsHTML}.  
-                “<strong>${p.title}</strong>,” 
-                <em>${p.journal}</em>${p.volume ? `, vol. ${p.volume}` : ""}${p.pages ? `, pp. ${p.pages}` : ""}, 
-                ${p.year}. 
-                ${p.doi ? `<a href="${p.doi}" target="_blank">📄 DOI</a>` : ""}
-              </li>
-            `;
-          })
-          .join("")}
+        ${renderList(intlJournal)}
+      </ul>
+    </div>
+
+    <div class="pub-category">
+      <h3>International Conference</h3>
+      <ul class="pub-list">
+        ${renderList(intlConf)}
       </ul>
     </div>
 
     <div class="pub-category">
       <h3>Domestic</h3>
       <ul class="pub-list">
-        ${pubs.domestic
-          .sort((a, b) => b.year - a.year)
-          .map((p) => {
-            const authorsHTML = formatAuthors(p);
-            return `
-              <li>
-                ${authorsHTML}.  
-                “<strong>${p.title}</strong>,”  
-                <em>${p.conference}</em>${p.pages ? `, pp. ${p.pages}` : ""}, ${p.year}.
-              </li>
-            `;
-          })
-          .join("")}
+        ${renderList(domestic)}
       </ul>
     </div>
 
     <p style="font-size:0.9em; color:#94a3b8; margin-top:20px;">
-      <sup>1</sup> First author <sup>†</sup> Equal contribution <sup>*</sup> Corresponding author
+      <sup>1</sup> First author 
+      <sup>†</sup> Equal contribution 
+      <sup>*</sup> Corresponding author
     </p>
   `;
 
@@ -165,7 +198,7 @@ function renderTravelMap(travels) {
     const color = colorMap[loc.type] || "#94a3b8";
 
     L.circleMarker(loc.coord, {
-      radius: 6,
+      radius: 4.5,
       color,
       fillColor: color,
       fillOpacity: 0.85
