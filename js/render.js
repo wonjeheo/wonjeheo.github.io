@@ -3,22 +3,25 @@
 
 async function loadData() {
   try {
-    const [pubsRes, honorsRes, eduRes, travelsRes] = await Promise.all([
+    const [pubsRes, honorsRes, certRes, eduRes, travelsRes] = await Promise.all([
       fetch("data/publications.json"),
       fetch("data/honors.json"),
+      fetch("data/certificate.json"),
       fetch("data/education.json"),
       fetch("data/travels.json")
     ]);
 
-    const [pubs, honors, edu, travels] = await Promise.all([
+    const [pubs, honors, certificates, edu, travels] = await Promise.all([
       pubsRes.json(),
       honorsRes.json(),
+      certRes.json(),
       eduRes.json(),
       travelsRes.json()
     ]);
 
     renderPublications(pubs);
     renderHonors(honors);
+    renderCertifications(certificates);
     renderEducation(edu);
     renderTravelMap(travels);
   } catch (err) {
@@ -150,6 +153,31 @@ function renderHonors(honors) {
         .join("")}
     </ul>
   `;
+  section.innerHTML = html;
+}
+
+
+/* ---------- 📜 Certifications ---------- */
+function renderCertifications(certificates) {
+  const section = document.querySelector("#certifications");
+  if (!section) return;
+
+  let html = `
+    <h2>Certifications</h2>
+    <ul class="award-list">
+      ${certificates
+        .sort((a, b) => Number(b.date) - Number(a.date))
+        .map(
+          (c) => `
+            <li>
+              ${c.date} <strong>${c.name}</strong> — ${c.issuer}
+            </li>
+          `
+        )
+        .join("")}
+    </ul>
+  `;
+
   section.innerHTML = html;
 }
 
