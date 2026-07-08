@@ -5,6 +5,11 @@
         "date": "2025" 
     }, 
     { 
+        "name": "TOEIC 925", 
+        "issuer": "ETS", 
+        "date": "2026" 
+    }, 
+    { 
         "name": "OPIC AL", 
         "issuer": "ACTFL", 
         "date": "2026" 
