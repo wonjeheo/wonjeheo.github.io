@@ -175,20 +175,7 @@ function renderResearchProjects(projects) {
           (project) => `
             <article class="project-item">
               <h3>${project.title}</h3>
-              <dl class="project-meta">
-                <div>
-                  <dt>Funding agency</dt>
-                  <dd>${project.funding_agency}</dd>
-                </div>
-                <div>
-                  <dt>Period</dt>
-                  <dd>${project.period}</dd>
-                </div>
-                <div>
-                  <dt>Role</dt>
-                  <dd>${project.role}</dd>
-                </div>
-              </dl>
+              <p class="project-sub">${project.funding_agency} <span class="dot">•</span> ${project.period}</p>
             </article>
           `
         )
