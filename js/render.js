@@ -3,16 +3,18 @@
 
 async function loadData() {
   try {
-    const [pubsRes, honorsRes, certRes, eduRes, travelsRes] = await Promise.all([
+    const [pubsRes, projectsRes, honorsRes, certRes, eduRes, travelsRes] = await Promise.all([
       fetch("data/publications.json"),
+      fetch("data/research_projects.json"),
       fetch("data/honors.json"),
       fetch("data/certificate.json"),
       fetch("data/education.json"),
       fetch("data/travels.json")
     ]);
 
-    const [pubs, honors, certificates, edu, travels] = await Promise.all([
+    const [pubs, projects, honors, certificates, edu, travels] = await Promise.all([
       pubsRes.json(),
+      projectsRes.json(),
       honorsRes.json(),
       certRes.json(),
       eduRes.json(),
@@ -20,6 +22,7 @@ async function loadData() {
     ]);
 
     renderPublications(pubs);
+    renderResearchProjects(projects);
     renderHonors(honors);
     renderCertifications(certificates);
     renderEducation(edu);
@@ -121,13 +124,6 @@ function renderPublications(pubs) {
   const html = `
     <h2>Publications</h2>
 
-    <div class="pub-category manuscript-category">
-      <h3>Manuscripts</h3>
-      <ul class="pub-list manuscript-list">
-        ${renderList(manuscripts)}
-      </ul>
-    </div>
-
     <div class="pub-category">
       <h3>International Journal</h3>
       <ul class="pub-list">
@@ -143,9 +139,16 @@ function renderPublications(pubs) {
     </div>
 
     <div class="pub-category">
-      <h3>Domestic</h3>
+      <h3>Domestic Conference</h3>
       <ul class="pub-list">
         ${renderList(domestic)}
+      </ul>
+    </div>
+
+    <div class="pub-category manuscript-category">
+      <h3>Manuscripts</h3>
+      <ul class="pub-list manuscript-list">
+        ${renderList(manuscripts)}
       </ul>
     </div>
 
@@ -157,6 +160,41 @@ function renderPublications(pubs) {
   `;
 
   section.innerHTML = html;
+}
+
+/* ---------- 🔬 Research Projects ---------- */
+function renderResearchProjects(projects) {
+  const section = document.querySelector("#research-projects");
+  if (!section) return;
+
+  section.innerHTML = `
+    <h2>Research Projects</h2>
+    <div class="project-list">
+      ${projects
+        .map(
+          (project) => `
+            <article class="project-item">
+              <h3>${project.title}</h3>
+              <dl class="project-meta">
+                <div>
+                  <dt>Funding agency</dt>
+                  <dd>${project.funding_agency}</dd>
+                </div>
+                <div>
+                  <dt>Period</dt>
+                  <dd>${project.period}</dd>
+                </div>
+                <div>
+                  <dt>Role</dt>
+                  <dd>${project.role}</dd>
+                </div>
+              </dl>
+            </article>
+          `
+        )
+        .join("")}
+    </div>
+  `;
 }
 
 /* ---------- 🏅 Honors & Awards ---------- */
