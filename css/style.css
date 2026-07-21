@@ -41,42 +41,13 @@ body {
   flex-shrink: 0;
 }
 
-/* 두 이미지를 같은 자리(겹침)로 설정 */
+/* 프로필 이미지 */
 .intro-photo img {
-  position: absolute;  /* ✅ 핵심: 겹치게 */
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  transition: opacity 0.6s ease-in-out;
-}
-
-/* 프로필: 기본 표시 */
-.profile-img {
-  opacity: 1;
-  z-index: 1;
-}
-
-/* 도마뱀: 숨김 상태 */
-.gecko-img {
-  opacity: 0;
-  z-index: 2;
-}
-
-/* hover 시 교체 */
-.intro-photo:hover .profile-img {
-  opacity: 0;
-}
-
-.intro-photo:hover .gecko-img {
-  opacity: 1;
-}
-
-/* hover 시 살짝 확대 효과 */
-.intro-photo:hover img {
-  transform: scale(1.03);
+  display: block;
 }
 
 /* 링크 섹션 */
@@ -132,60 +103,6 @@ body {
   transform: translateY(0);
 }
 
-/* === 🦎 자유롭게 돌아다니는 Gecko === */
-.gecko {
-  position: fixed;
-  z-index: 0; /* ✅ 섹션보다 아래 */
-  opacity: 0.9;
-  pointer-events: none;
-}
-
-.gecko img {
-  width: 400px;
-  transform-origin: center center;
-  filter: brightness(1.5) contrast(2)
-          drop-shadow(0 0 12px rgba(56, 189, 248, 0.6));
-  transition: transform 1s ease;
-  image-rendering: -webkit-optimize-contrast;
-}
-
-/* 왼쪽 Gecko: 천천히 화면을 가로질러 이동 */
-.free-gecko-left {
-  top: 35%;
-  left: 10%;
-  animation: roamLeft 18s ease-in-out infinite alternate;
-}
-
-/* 오른쪽 Gecko: 반대 방향, 반전 */
-.free-gecko-right {
-  bottom: 5%;
-  right: 20%;
-  transform: scaleX(-1);
-  animation: roamRight 22s ease-in-out infinite alternate;
-}
-
-/* === 이동 애니메이션 === */
-@keyframes roamLeft {
-  0%   { transform: translateX(0) rotate(6deg) scaleX(1); }
-  25%  { transform: translate(150px, 40px) rotate(2deg) scaleX(1); }
-  50%  { transform: translate(300px, 0) rotate(-3deg) scaleX(1); }
-  /* 방향 반전 (머리와 진행 모두 바꾸기) */
-  50.1%{ transform: translate(300px, 0) rotate(-3deg) scaleX(-1); }
-  75%  { transform: translate(150px, 40px) rotate(-2deg) scaleX(-1); }  /* ✅ y도 동일 방향으로 */
-  100% { transform: translate(0, 0) rotate(5deg) scaleX(-1); }          /* ✅ 원위치 복귀 */
-}
-
-/* 🦎 오른쪽 도마뱀 */
-@keyframes roamRight {
-  0%   { transform: translateX(0) rotate(-5deg) scaleX(-1); }
-  25%  { transform: translate(-150px, -40px) rotate(-2deg) scaleX(-1); }
-  50%  { transform: translate(-300px, 0) rotate(3deg) scaleX(-1); }
-  /* 방향 반전 (머리와 진행 모두 바꾸기) */
-  50.1%{ transform: translate(-300px, 0) rotate(3deg) scaleX(1); }
-  75%  { transform: translate(-150px, -40px) rotate(-2deg) scaleX(1); }  /* ✅ 진행 방향 반전 */
-  100% { transform: translate(0, 0) rotate(-5deg) scaleX(1); }
-}
-
 /* === Publication 섹션 === */
 .pub-category {
   margin-bottom: 40px;
@@ -223,6 +140,32 @@ body {
   text-decoration: underline;
 }
 
+
+
+.pub-badge {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.pub-status {
+  display: inline-block;
+  margin-left: 6px;
+  color: #cbd5e1;
+  font-size: 0.86em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.manuscript-category {
+  padding: 18px 20px;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.manuscript-list li::before {
+  content: "📝 ";
+}
 
 /* === Award 섹션 === */
 .award-list {

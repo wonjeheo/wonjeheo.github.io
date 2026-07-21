@@ -58,6 +58,10 @@ function formatAuthors(p) {
 function renderPublications(pubs) {
   const section = document.querySelector("#publication");
 
+  const manuscripts = Array.isArray(pubs.manuscripts)
+    ? pubs.manuscripts
+    : [];
+
   const intlJournal = Array.isArray(pubs.international_journal)
     ? pubs.international_journal
     : [];
@@ -81,6 +85,8 @@ function renderPublications(pubs) {
           ? `<em>${p.journal}</em>`
           : p.conference
           ? `<em>${p.conference}</em>`
+          : p.venue
+          ? `<em>${p.venue}</em>`
           : "";
 
         let detail = "";
@@ -88,7 +94,11 @@ function renderPublications(pubs) {
         if (p.pages) detail += `, pp. ${p.pages}`;
 
         const presentation = p.presentation
-          ? ` <span style="color:#38bdf8; font-weight:bold;">[${String(p.presentation).toUpperCase()}]</span>`
+          ? ` <span class="pub-badge">[${String(p.presentation).toUpperCase()}]</span>`
+          : "";
+
+        const status = p.status
+          ? ` <span class="pub-status">[${String(p.status).toUpperCase()}]</span>`
           : "";
 
         const doi = p.doi
@@ -101,6 +111,7 @@ function renderPublications(pubs) {
             “<strong>${p.title}</strong>,” 
             ${venue}${detail}, ${p.year}.
             ${presentation}
+            ${status}
             ${doi}
           </li>
         `;
@@ -109,6 +120,13 @@ function renderPublications(pubs) {
 
   const html = `
     <h2>Publications</h2>
+
+    <div class="pub-category manuscript-category">
+      <h3>Manuscripts</h3>
+      <ul class="pub-list manuscript-list">
+        ${renderList(manuscripts)}
+      </ul>
+    </div>
 
     <div class="pub-category">
       <h3>International Journal</h3>
