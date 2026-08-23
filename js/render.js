@@ -3,22 +3,26 @@
 
 async function loadData() {
   try {
-    const [pubsRes, projectsRes, honorsRes, certRes, eduRes, travelsRes] = await Promise.all([
-      fetch("data/publications.json"),
-      fetch("data/research_projects.json"),
-      fetch("data/honors.json"),
-      fetch("data/certificate.json"),
-      fetch("data/education.json"),
-      fetch("data/travels.json")
-    ]);
+    const loadJson = async (path) => {
+      const response = await fetch(path, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`${path}: HTTP ${response.status}`);
+      }
+
+      try {
+        return await response.json();
+      } catch (error) {
+        throw new Error(`${path}: invalid JSON (${error.message})`);
+      }
+    };
 
     const [pubs, projects, honors, certificates, edu, travels] = await Promise.all([
-      pubsRes.json(),
-      projectsRes.json(),
-      honorsRes.json(),
-      certRes.json(),
-      eduRes.json(),
-      travelsRes.json()
+      loadJson("data/publications.json"),
+      loadJson("data/research_projects.json"),
+      loadJson("data/honors.json"),
+      loadJson("data/certificate.json"),
+      loadJson("data/education.json"),
+      loadJson("data/travels.json")
     ]);
 
     renderPublications(pubs);
